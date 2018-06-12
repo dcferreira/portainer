@@ -35,7 +35,7 @@ function ($q, $scope, $state, $timeout, Service, ServiceHelper, ConfigService, C
     MemoryReservation: 0,
     MemoryLimitUnit: 'MB',
     MemoryReservationUnit: 'MB',
-    RestartCondition: 'any',
+    RestartCondition: 'none',
     RestartDelay: '5s',
     RestartMaxAttempts: 0,
     RestartWindow: '0s',
@@ -288,7 +288,7 @@ function ($q, $scope, $state, $timeout, Service, ServiceHelper, ConfigService, C
 
   function prepareRestartPolicy(config, input) {
     config.TaskTemplate.RestartPolicy = {
-      Condition: input.RestartCondition || 'any',
+      Condition: input.RestartCondition || 'none',
       Delay: ServiceHelper.translateHumanDurationToNanos(input.RestartDelay) || 5000000000,
       MaxAttempts: input.RestartMaxAttempts || 0,
       Window: ServiceHelper.translateHumanDurationToNanos(input.RestartWindow) || 0
